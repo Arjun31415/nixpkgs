@@ -21,6 +21,10 @@
   libcap_ng,
   dbus,
   qtwayland,
+  nftables,
+  c-ares,
+  freetype,
+  zlib-ng,
 }:
 stdenv.mkDerivation rec {
   pname = "windscribe";
@@ -53,6 +57,9 @@ stdenv.mkDerivation rec {
     libnl
     libcap_ng
     dbus
+    nftables
+    c-ares.dev
+    freetype
   ];
 
   runtimeDependencies = [
@@ -64,6 +71,9 @@ stdenv.mkDerivation rec {
     libappindicator
     libsecret
     qtwayland
+    c-ares.out
+    c-ares.dev
+    zlib-ng
   ];
 
   unpackPhase = ''
