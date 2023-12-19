@@ -1,27 +1,27 @@
-{ stdenv
-, lib
-, fetchurl
-, autoPatchelfHook
-, coreutils
-, dpkg
-, qtbase
-, wrapQtAppsHook
-, libsecret
-, nss
-, openssl
-, udev
-, xorg
-, mesa
-, libdrm
-, libappindicator
-, openvpn
-, wstunnel
-, libnl
-, libcap_ng
-, dbus
-, wayland
+{
+  stdenv,
+  lib,
+  fetchurl,
+  autoPatchelfHook,
+  coreutils,
+  dpkg,
+  qtbase,
+  wrapQtAppsHook,
+  libsecret,
+  nss,
+  openssl,
+  udev,
+  xorg,
+  mesa,
+  libdrm,
+  libappindicator,
+  openvpn,
+  wstunnel,
+  libnl,
+  libcap_ng,
+  dbus,
+  qtwayland,
 }:
-
 stdenv.mkDerivation rec {
   pname = "windscribe";
   version = "2.8.6";
@@ -53,7 +53,6 @@ stdenv.mkDerivation rec {
     libnl
     libcap_ng
     dbus
-    wayland
   ];
 
   runtimeDependencies = [
@@ -64,6 +63,7 @@ stdenv.mkDerivation rec {
     (lib.getLib udev)
     libappindicator
     libsecret
+    qtwayland
   ];
 
   unpackPhase = ''
@@ -90,11 +90,11 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Windscribe 2.0 desktop client for Windows, Mac and Linux";
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
+    sourceProvenance = with sourceTypes; [binaryNativeCode];
     license = licenses.gpl2;
     # maintainers = with maintainers; [ toschmidt ];
     homepage = "https://getmailspring.com";
     downloadPage = "https://github.com/Foundry376/Mailspring";
-    platforms = [ "x86_64-linux" ];
+    platforms = ["x86_64-linux"];
   };
 }
